@@ -10,9 +10,3 @@ This bot is powered by [a folder full of modules](https://botkit.ai/docs/v4/core
 Edit the samples, and add your own in the [features/](features/) folder.
 
 
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/andrew-elmore/ChatBot.git
-git push -u origin main
