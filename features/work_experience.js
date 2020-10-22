@@ -263,10 +263,6 @@ function searchKeywords(lib, keywords) {
 
 module.exports = function (controller) {
 
-
-
-
-
     controller.on('message', async(bot, message) => {
         if (message.text === 'I would like to talk about somthing else.') {
             let res = topicChange
@@ -276,16 +272,24 @@ module.exports = function (controller) {
                 await bot.reply(message, res)
             }, 1000);
         } else {
-        let keywords = message.text.toLowerCase().replace('?', "").replace('.', "").split(' ')
-        let res = searchKeywords(library, keywords)[0] 
-        if (!res) {res = main}
-        res.quick_replies.push(newTopic)
-
-        await bot.reply(message, { type: 'typing' }); 
-        setTimeout(async () => {
-            await bot.changeContext(message.reference);
-            await bot.reply(message, res) 
-        }, 1000);}
+            let keywords = message.text.toLowerCase().replace('?', "").replace('.', "").split(' ')
+            let res = searchKeywords(library, keywords)[0] 
+            if (!res) {
+                res = main
+                res.quick_replies.push(newTopic)
+                await bot.reply(message, { type: 'typing' }); 
+                setTimeout(async () => {
+                    await bot.changeContext(message.reference);
+                    await bot.reply(message, res) 
+                }, 1000);
+            }
+            res.quick_replies.push(newTopic)
+            await bot.reply(message, { type: 'typing' }); 
+            setTimeout(async () => {
+                await bot.changeContext(message.reference);
+                await bot.reply(message, res) 
+            }, 1000);
+        }
     });
 
 }
