@@ -193,10 +193,6 @@ let projectsAnalytics = {
     ]
 }
 
-
-
-
-
 let library = {
     you: {
         payload: you,
